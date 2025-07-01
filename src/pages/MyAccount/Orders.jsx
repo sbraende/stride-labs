@@ -7,7 +7,7 @@ import {
   where,
 } from "firebase/firestore";
 import styles from "./Orders.module.css";
-import { db } from "../../../firestore.config";
+import { db } from "@/config/firestore.config";
 import { useEffect, useState } from "react";
 import { getAuthContext } from "../../context/authContext";
 

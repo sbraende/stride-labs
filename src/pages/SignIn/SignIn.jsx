@@ -1,7 +1,7 @@
 import styles from "./SignIn.module.css";
 import formStyles from "../../styles/FormStyles.module.css";
 import { useState } from "react";
-import { auth } from "../../../auth.config";
+import { auth } from "@/config/auth.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import RequiredField from "../../components/RequiredField/RequiredField";
 import useSignInValidation from "../../hooks/useSignInValidation";

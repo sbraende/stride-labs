@@ -1,9 +1,14 @@
+import { getAuthContext } from "@/context/authContext";
+import { auth } from "@/config/auth.config";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Navigate,
   Route,
 } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import App from "../App";
 import Home from "../pages/Home/Home";
 import Checkout from "../pages/Checkout/Checkout";
@@ -18,10 +23,7 @@ import DashboardLayout from "../pages/MyAccount/DashboardLayout";
 import Overview from "../pages/MyAccount/Overview";
 import Orders from "../pages/MyAccount/Orders";
 import Confirmation from "../pages/Confirmation/Confirmation";
-import { getAuthContext } from "../context/authContext";
 import VerifyEmail from "../pages/VerifyEmail/VerifyEmail";
-import { useEffect, useState } from "react";
-import { auth } from "../../auth.config";
 
 const RouteGuard = ({ children }) => {
   const { user, loading } = getAuthContext();

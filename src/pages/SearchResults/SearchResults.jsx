@@ -2,8 +2,8 @@ import styles from "./SearchResults.module.css";
 import { useLocation } from "react-router";
 import shoeList from "../../data/shoeData";
 import { useEffect, useState } from "react";
-import { ai } from "../../../gemini.config";
-import { Type } from "@google/genai";
+// import { ai } from "../../../gemini.config";
+// import { Type } from "@google/genai";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const SearchResults = () => {

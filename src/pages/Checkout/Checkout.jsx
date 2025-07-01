@@ -8,7 +8,7 @@ import useCheckoutValidation from "../../hooks/useCheckoutValidation";
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getAuthContext } from "../../context/authContext";
-import { db } from "../../../firestore.config";
+import { db } from "@/config/firestore.config";
 
 const Checkout = () => {
   const [checkoutData, setCheckoutData] = useState({

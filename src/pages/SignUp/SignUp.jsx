@@ -5,10 +5,10 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
-} from "@firebase/auth";
-import { auth } from "../../../auth.config";
+} from "firebase/auth";
+import { auth } from "@/config/auth.config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { db } from "../../../firestore.config";
+import { db } from "@/config/firestore.config";
 import { Link, useNavigate } from "react-router";
 import RequiredField from "../../components/RequiredField/RequiredField";
 import useSignUpValidation from "../../hooks/useSignUpValidation";

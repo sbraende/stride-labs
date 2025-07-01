@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./VerifyEmail.module.css";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../auth.config";
+import { auth } from "@/config/auth.config";
 import { sendEmailVerification } from "firebase/auth";
 import useSignOut from "../../hooks/useSignOut";
 

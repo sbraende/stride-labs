@@ -2,7 +2,7 @@ import styles from "./ForgotPassword.module.css";
 import formStyles from "../../styles/FormStyles.module.css";
 import RequiredField from "../../components/RequiredField/RequiredField";
 import { Link } from "react-router-dom";
-import { auth } from "../../../auth.config";
+import { auth } from "@/config/auth.config";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import useForgotPasswordValidation from "../../hooks/useForgotPasswordValidation";

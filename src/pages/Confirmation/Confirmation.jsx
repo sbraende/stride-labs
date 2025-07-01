@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Confirmation.module.css";
 import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firestore.config";
+import { db } from "@/config/firestore.config";
 import FormStyles from "../../styles/FormStyles.module.css";
 
 const Confirmation = () => {

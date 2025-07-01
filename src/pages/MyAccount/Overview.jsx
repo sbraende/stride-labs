@@ -2,7 +2,7 @@ import styles from "./Overview.module.css";
 import { useEffect, useState } from "react";
 import { getAuthContext } from "../../context/authContext";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firestore.config";
+import { db } from "@/config/firestore.config";
 import useSignOut from "../../hooks/useSignOut";
 
 const Overview = () => {

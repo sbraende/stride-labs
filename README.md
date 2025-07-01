@@ -6,7 +6,7 @@ This is a final project for the Frontend Development course at Kristiania.
 
 **Live Site:** [https://sbraende-stridelabs.netlify.app](https://sbraende-stridelabs.netlify.app)
 
-![Screenshot of site](/public/screenshots/stride-labs.png)
+![Screenshot of site](/client/public/screenshots/stride-labs.png)
 
 ## Features
 

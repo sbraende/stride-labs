@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../auth.config";
+import { auth } from "@/config/auth.config";
 
 const useSignOut = () => {
   const navigate = useNavigate();
