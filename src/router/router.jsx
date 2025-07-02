@@ -31,22 +31,30 @@ const RouteGuard = ({ children }) => {
   useEffect(() => {
     const checkEmailVerification = async () => {
       if (user) {
-        auth.currentUser.reload();
+        await auth.currentUser.reload();
         setIsVerified(auth.currentUser.emailVerified);
+        setCheckingVerification(false);
+      } else {
+        // Reset verification state when no user
+        setIsVerified(null);
+        setCheckingVerification(true);
       }
-      setCheckingVerification(false);
     };
 
     checkEmailVerification();
   }, [user]);
 
+  // Wait for auth to finish loading before making any redirect decisions
+  if (loading) return null;
+
+  // Only redirect to signin if auth has finished loading and there's no user
   if (!user) return <Navigate to="/signin" />;
 
+  // Wait for email verification check to complete
   if (checkingVerification) return null;
 
-  if (!isVerified) return <Navigate to="/verify-email" />;
-
-  if (loading) return;
+  // Redirect to verify email if user is not verified
+  if (isVerified === false) return <Navigate to="/verify-email" />;
 
   return children;
 };

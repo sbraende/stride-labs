@@ -22,7 +22,7 @@ const Orders = () => {
       const orders = await getDocs(
         query(
           collection(db, "orders"),
-          where("email", "==", user.email),
+          where("userId", "==", user.uid),
           orderBy("timestamp", "desc")
         )
       );
