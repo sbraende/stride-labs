@@ -2,17 +2,17 @@ import styles from "./SearchResults.module.css";
 import { useLocation } from "react-router";
 import shoeList from "../../data/shoeData";
 import { useEffect, useState } from "react";
-// import { ai } from "../../../gemini.config";
-// import { Type } from "@google/genai";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { API_URL } from "../../config/backend.config";
 
 const SearchResults = () => {
   const [aiResults, setAiResults] = useState({
-    response: "",
-    shoeId: "",
+    recommendation: "",
+    product: {},
   });
+  const [error, setError] = useState({});
 
-  // Get query
+  // Get user query
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const userQuery = queryParams.get("q");
@@ -20,75 +20,47 @@ const SearchResults = () => {
   useEffect(() => {
     if (!userQuery) return;
 
-    setAiResults({ response: "", shoeId: "" });
-
-    // Generate prompt
-    const prompt = `
-      You are a helpful member of our shoe shop team, providing personalized recommendations. When suggesting a shoe, please use "we" (e.g., "We would recommend...").
-
-      Based on the following shoe inventory and the user's request, recommend one shoe that best fits their needs. Respond with a JSON object following this schema: { "response": "...", "shoeId": number }.
-
-      Shoe Inventory:
-      ${JSON.stringify(shoeList)}
-
-      User Request:
-      ${userQuery}
-      `;
-
-    const getAiRecommendedProduct = async () => {
+    const getAiResponse = async () => {
       try {
-        const response = await ai.models.generateContent({
-          model: "gemini-2.0-flash",
-          contents: prompt,
-          config: {
-            responseMimeType: "application/json",
-            responseSchema: {
-              type: Type.OBJECT,
-              properties: {
-                response: { type: Type.STRING },
-                shoeId: { type: Type.STRING },
-              },
-              propertyOrdering: ["response", "shoeId"],
-            },
-          },
+        const response = await fetch(`${API_URL}/api/gemini`, {
+          method: "POST",
+          body: JSON.stringify({ query: userQuery }),
+          headers: { "Content-type": "application/json" },
         });
+        const data = await response.json();
 
-        const responseData = JSON.parse(response.text);
-        if (responseData.shoeId === "null") responseData.shoeId = null;
-
-        setAiResults(responseData);
-      } catch (error) {
-        console.error("AI response falied: ", error);
         setAiResults({
-          response:
-            "We're having trouble generating a recommendation at the moment. Please try again later or browse our collection manually.",
-          shoeId: null,
+          recommendation: data.recommendation,
+          product: data.product,
         });
+      } catch (error) {
+        console.error("Should not get reponse from Gemini:", error);
+        setError("Error getting recommendation, please contact support");
       }
     };
-    getAiRecommendedProduct();
-  }, [userQuery]);
 
-  // Match shoe data based on ID.
-  const findShoe = () => {
-    return shoeList.find((s) => aiResults.shoeId === s.id);
-  };
+    getAiResponse();
+  }, []);
 
   return (
     <div className={styles.searchResults}>
       <div className={styles.searchResultsContent}>
-        {aiResults.response ? (
-          <>
-            <h3>Our recommendation</h3>
-            <p>{aiResults.response}</p>
-            {aiResults.shoeId && (
-              <ul className={styles.productList}>
-                <ProductCard product={findShoe()} />
-              </ul>
-            )}
-          </>
+        {Object.keys(error).length === 0 ? (
+          aiResults.recommendation ? (
+            <>
+              <h3>Our recommendation</h3>
+              <p>{aiResults.recommendation}</p>
+              {
+                <ul className={styles.productList}>
+                  <ProductCard product={aiResults.product} />
+                </ul>
+              }
+            </>
+          ) : (
+            <p>Loading search results...</p>
+          )
         ) : (
-          <p>Loading search results...</p>
+          <p>{error}</p>
         )}
       </div>
     </div>
