@@ -34,13 +34,13 @@ const SearchResults = () => {
           product: data.product,
         });
       } catch (error) {
-        console.error("Should not get reponse from Gemini:", error);
+        console.error("Could not get reponse from Gemini:", error);
         setError("Error getting recommendation, please contact support");
       }
     };
 
     getAiResponse();
-  }, []);
+  }, [userQuery]);
 
   return (
     <div className={styles.searchResults}>
