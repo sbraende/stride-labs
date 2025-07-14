@@ -1,3 +1,6 @@
+GitHub repository: https://github.com/sbraende/stride-labs
+
+
 # Stride Labs – AI-Powered Shoe Shop
 
 **Stride Labs** is an AI-enhanced online shoe store built with React and Vite. It helps users discover the perfect shoe based on their preferences using natural language search powered by a language model.
