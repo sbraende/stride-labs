@@ -1,5 +1,3 @@
-GitHub repository: https://github.com/sbraende/stride-labs
-
 # Stride Labs – AI-Powered Shoe Shop
 
 **Stride Labs** is an AI-enhanced online shoe store built with React and Vite. It helps users discover the perfect shoe based on their preferences using natural language search powered by a language model.
@@ -8,7 +6,7 @@ This is a final project for the Frontend Development course at Kristiania.
 
 **Live Site:** [https://sbraende-stridelabs.netlify.app](https://sbraende-stridelabs.netlify.app)
 
-![Screenshot of site](/client/public/screenshots/stride-labs.png)
+![Screenshot of site](./public/screenshots/stride-labs.png)
 
 ## Features
 
@@ -56,10 +54,10 @@ VITE_FIREBASE_APP_ID=XXXX
 6. Optional: Add VITE_API_URL to .env with link to where you host your backend.
 
 ```env
-VITE_API_URL=https://stride-labs-d9457efd3e8a.herokuapp.com
+VITE_API_URL=XXXX
 ```
 
-6. Start the local development server:
+7. Start the local development server:
 
 ```bash
 npm run dev
