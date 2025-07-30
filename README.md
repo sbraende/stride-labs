@@ -1,6 +1,5 @@
 GitHub repository: https://github.com/sbraende/stride-labs
 
-
 # Stride Labs – AI-Powered Shoe Shop
 
 **Stride Labs** is an AI-enhanced online shoe store built with React and Vite. It helps users discover the perfect shoe based on their preferences using natural language search powered by a language model.
@@ -41,7 +40,26 @@ cd stride-labs
 npm install
 ```
 
-4. Start the local development server:
+4. Create .env file. Create Google Firebase project. Add details to .env file:
+
+```env
+VITE_FIREBASE_API_KEY=XXXX
+VITE_FIREBASE_AUTH_DOMAIN=XXXX
+VITE_FIREBASE_PROJECT_ID=XXXX
+VITE_FIREBASE_STORAGE_BUCKET=XXXX
+VITE_FIREBASE_MESSAGING_SENDER_ID=XXXX
+VITE_FIREBASE_APP_ID=XXXX
+```
+
+5. Setup backend and start backend server: https://github.com/sbraende/stride-labs-backend.
+
+6. Optional: Add VITE_API_URL to .env with link to where you host your backend.
+
+```env
+VITE_API_URL=https://stride-labs-d9457efd3e8a.herokuapp.com
+```
+
+6. Start the local development server:
 
 ```bash
 npm run dev
@@ -85,7 +103,3 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 ## License
 
 This project is licensed under the [MIT License](./LICENSE). You’re free to use, modify, and distribute this project under its terms.
-
-## Assigment notes
-
-- Reza has approved Gemini as external API.
