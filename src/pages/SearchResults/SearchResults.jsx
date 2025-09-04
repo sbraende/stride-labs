@@ -29,13 +29,18 @@ const SearchResults = () => {
         });
         const data = await response.json();
 
+        // Handle cases where the API response structure is unexpected
+        if (!data) {
+          throw new Error('No data received from API');
+        }
+
         setAiResults({
-          recommendation: data.recommendation,
-          product: data.product,
+          recommendation: data.recommendation || 'No recommendation available',
+          product: data.product || null,
         });
       } catch (error) {
-        console.error("Could not get reponse from Gemini:", error);
-        setError("Error getting recommendation, please contact support");
+        console.error("Could not get response from backend:", error);
+        setError("Error getting recommendation. Please try a different search term or contact support.");
       }
     };
 
@@ -50,11 +55,14 @@ const SearchResults = () => {
             <>
               <h3>Our recommendation</h3>
               <p>{aiResults.recommendation}</p>
-              {
+              {aiResults.product && (
                 <ul className={styles.productList}>
                   <ProductCard product={aiResults.product} />
                 </ul>
-              }
+              )}
+              {!aiResults.product && (
+                <p>No specific product recommendation available for this search.</p>
+              )}
             </>
           ) : (
             <p>Loading search results...</p>
