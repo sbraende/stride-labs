@@ -22,7 +22,7 @@ const SearchResults = () => {
 
     const getAiResponse = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/gemini`, {
+        const response = await fetch(`${API_URL}/api/chatgpt`, {
           method: "POST",
           body: JSON.stringify({ query: userQuery }),
           headers: { "Content-type": "application/json" },
